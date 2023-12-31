@@ -1,0 +1,129 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8"></meta>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+        <title>Learning Vue</title>
+        <script src= "https://unpkg.com/vue@3.0.2"></script>
+    </head>
+    <body>
+        <h1 style="text-align: center;">Learn Vue + Javascript</h1>
+        <div id="app">
+            
+            <!-- Books Information -->
+            <div v-if="showBooks">
+                <!-- Attribute Binding (DYNAMICALLY) -->
+                <div style="align-items: center;" >
+                    <a v-bind:href="url">GOOGLE WEBSITE</a>
+                </div>
+                <br><br>
+
+
+
+                <!-- show data in the web -->
+                <h3>Increase and Decrease</h3>
+                <br><br>
+                <span style="align-items: center; justify-content: space-between; display: flex;">
+                    <button style="margin-left: 20%;" @click="age++">Increase the Age</button>
+                    <button style="margin-right: 20%;" @click="age--">Reduce the Age</button>
+                </span>
+                <br><br>
+                <p>   {{age}}</p>
+
+                <br>
+                <br>
+                
+                <!-- show data in the web from array list using for -->
+                <h3>Books in Books' Array <span style="font-size: small;">click the Book</span></h3>
+                <ul>
+                    <li v-for="book in books" :class="{fav : book.urfav}" @click="toggleFav(book)">
+                        <h3>{{book.title}}</h3>
+                        <p>{{book.author}}</p>
+                        <p>{{book.sold}}</p>
+                    </li>
+                </ul>
+
+                
+                <br><br>
+
+
+                <!-- Filtered Books -->
+                <h3>Books in filteredBooks' Array <span style="font-size: small;">click the Book</span></h3>
+                <ul>
+                    <li v-for="book in filteredBooks" :class="{fav : book.urfav}" @click="toggleFav(book)">
+                        <h3>{{book.title}}</h3>
+                        <p>{{book.author}}</p>
+                        <p>{{book.sold}}</p>
+                    </li>
+                </ul>
+            </div>
+            <br>
+
+            <!-- Hide Books? -->
+            <button style="text-align: center;" @click="toggleBooks()">
+               <span v-if="showBooks" > Hide Books</span>
+               <span v-else > Show Books</span>
+            </button>
+
+            <br><br>
+            <div v-show ="showBooks"> Currently Showing books</div>
+            <div v-show ="!showBooks"> Currently Hiding books</div>
+            <br><br>
+            <!-- Mouse Events -->
+            <h3 style="text-align: center;"> Mouse Movement <span style="font-size: small;">check the console</span></h3>
+            <div class="box" @mouseover="handleEvent($event, 5)">mouse over (entering)</div>
+            <div class="box" @mouseleave="handleEvent($event, 6)">mouse leave (leaving)</div>
+            <div class="box" @dblclick="handleEvent">double click</div>
+            <div class="box" @mousemove="moveMouse"> Position - {{x}} - {{y}}</div>
+
+        </div> 
+
+        <script src="main.js"></script>
+    </body>
+
+    <style>
+        body{
+            background: white;
+            max-width: 960px;
+            margin: 20px auto;
+        }
+
+        p, h3, ul{
+            margin: 0;
+            padding: 0;
+            align-items: center;
+            text-align: center;
+        }
+
+        li{
+            /* To remove the list circle */
+            list-style-type : none; 
+
+            background: white;
+            margin: 20px auto;
+            padding: 10px 20px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+
+            /* equal space between each item in horizontal space */
+            justify-content: space-between;
+        }
+
+        li.fav{
+            background-color:aqua;
+        }
+
+        .box{
+            padding: 100px 0;
+            width: 300px;
+            text-align: center;
+            background-color: red;
+            margin: 20px;
+            display: inline-block;
+        }
+
+        .fav{
+            color : red;
+        }
+    </style>
+</html>
